@@ -39,7 +39,7 @@ User.init(
             autoIncrement:true,
 
         },
-        name: {
+        name:{
         type: DataTypes.STRING(50),
         allowNull: false,
         },
