@@ -1,4 +1,4 @@
-import greetings from './home.routes';
+import greetings from './people.routes';
 import express from 'express';
 
 const router = express.Router()

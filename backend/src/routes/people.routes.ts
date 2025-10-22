@@ -1,5 +1,5 @@
 import express from 'express';
-import greetings from '../controllers/home.controller';
+import greetings from '../controllers/people.controller';
 
 
 const route = express.Router();

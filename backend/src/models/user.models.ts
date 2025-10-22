@@ -33,6 +33,7 @@ public async comparePassword(candidatePassword:string):Promise <boolean>{
 
 
 User.init(
+    {
         id:{
             type:DataTypes.INTEGER,
             primaryKey: true,
@@ -44,9 +45,9 @@ User.init(
         allowNull: false,
         },
         email: {
-        type: DataTypes.STRING(100)
-        allowNull:false
-        unique:true
+        type: DataTypes.STRING(100),
+        allowNull:false,
+        unique:true,
         validate:{
         isEmail:true,
         }
@@ -55,21 +56,21 @@ User.init(
         type: DataTypes.STRING(100),
         allowNull: false
         },
-         role:{
+        role:{
         type: DataTypes.ENUM('admin', 'analyst'),
-        allowNull:false
-        defaultValue:'analyst'
+        allowNull:false,
+        defaultValue:'analyst',
     },
+},
 {
 sequelize,
 tableName: 'User',
-defaultValue: true,
 hooks:{
     //Hook para encriptar la ontraseña antes de crear el usuario 
     beforeCreate: async (user:User)=>{
         // salt es para establecer el numero de caracteres de encriptacion
         const salt = await bcrypt.genSalt(10); //Cantidad de rounds  o "cost factor" proceso de complejidad del hash
-        user.password = await bycrypt.hash(user.password, salt);
+        user.password = await bcrypt.hash(user.password, salt);
     },
     beforeUpdate: async (user:User)=>{
         // Antes de actualizar la contraseña en la base de datos la hasheo con bycript
@@ -78,7 +79,7 @@ hooks:{
             user.password = await bcrypt.hash(user.password, salt);
         }
         }
-
+    }
 
 }
 )
