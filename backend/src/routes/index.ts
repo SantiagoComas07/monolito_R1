@@ -1,4 +1,4 @@
-import greetings from './people.routes';
+import greetings from './products.routes';
 import express from 'express';
 
 const router = express.Router()

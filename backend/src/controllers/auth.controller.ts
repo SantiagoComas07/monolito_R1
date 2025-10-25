@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';  
 import {User} from '../models';
+import passwordService from '../services/encrypted';
 
 
 // log in 
@@ -29,7 +30,7 @@ export  const login = async(req:Request, res:Response ): Promise<void>=>{
         }
 
         //Verify the password is correct
-        const isPasswordValid= await user.comparePassword(password);
+        const isPasswordValid = await passwordService.comparePassword(password,user.password);
 
         if(!isPasswordValid){
             res.status(401).json({
