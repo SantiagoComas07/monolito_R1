@@ -1,10 +1,10 @@
 import express from 'express';
-import greetings from '../controllers/products.controller';
+import products from '../controllers/products.controller';
 
 
-const route = express.Router();
+const router = express.Router();
 
-route.use("/Products", greetings);
+router.use("/inventary", products);
 
 
-export default route;
+export default router;

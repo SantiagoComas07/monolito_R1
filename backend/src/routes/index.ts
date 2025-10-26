@@ -1,12 +1,10 @@
-import greetings from './products.routes';
 import express from 'express';
+import authRoute from './auth.routes';
+import productRoute from './products.routes';
 
 const router = express.Router()
 
-
-
-router.get('/greet', greetings);
-
-
+router.use('/auth', authRoute);
+router.use('/products',productRoute);
 
 export default router;
