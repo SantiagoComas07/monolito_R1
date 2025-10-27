@@ -25,6 +25,7 @@ export  const login = async(req:Request, res:Response ): Promise<void>=>{
                 sucess:false,
                 message:'Invalid email or password'
             })
+            return;
         }else{
             alert("email")
         }

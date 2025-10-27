@@ -2,9 +2,10 @@
 import ProductServices from '../services/productService';
     
 
-
+//Create instance of ProductServices
 const productService = new ProductServices();
 
+// Function to get all products
 export const getAllProductsController = async(req:Request, res:Response):Promise<void> =>{
     try{
         const products = await productService.getAllProducts();

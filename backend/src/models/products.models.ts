@@ -78,4 +78,4 @@ Product.init({
 
 
 
-export default Product;
+export {Product};

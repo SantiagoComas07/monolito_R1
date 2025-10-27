@@ -9,7 +9,7 @@ id:number,
 name:string,
 email:string,
 password:string,
-role: 'Admin' | 'User'
+role: 'admin' | 'analyst',
 }
 
 
@@ -22,7 +22,7 @@ public name!:string;
 public age!:number;
 public email!:string;
 public password!:string;
-public role!: 'Admin' | 'User';
+public role!: 'admin' | 'analyst';
 
 
 public async comparePassword(candidatePassword:string):Promise <boolean>{
@@ -65,7 +65,7 @@ User.init(
 },
 {
 sequelize,
-tableName: 'User',
+tableName: 'users',
 hooks:{
     //Hook para encriptar la ontraseña antes de crear el usuario 
     beforeCreate: async (user:User)=>{
@@ -74,7 +74,7 @@ hooks:{
     beforeUpdate: async (user:User)=>{
         // Antes de actualizar la contraseña en la base de datos la hasheo con bycript
         if(user.changed('password')){
-         user.password = await passwordService.hashPassword(user.password);
+             user.password = await passwordService.hashPassword(user.password);
         }
         }
     }
@@ -83,4 +83,4 @@ hooks:{
 )
 
 
-export default User;
+export {User};

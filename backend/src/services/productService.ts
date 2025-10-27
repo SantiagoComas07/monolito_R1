@@ -1,5 +1,4 @@
-import {Request, Response} from 'express';
-import Product from '../models/products.models';
+import {Product} from '../models';
 
 
 export class ProductServices {

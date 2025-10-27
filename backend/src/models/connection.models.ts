@@ -10,7 +10,7 @@ export const initDB = async() =>{
         await sequelize.sync({force:false, alter: true});
         console.log('Database synchronized')
     }catch(error){
-        console.error('Erroorrrr')
+        console.error('Erroorrrr: ', error);
     }
 
 };
