@@ -1,6 +1,8 @@
 import {Request, Response} from 'express';  
 import {User} from '../models';
 import passwordService from '../services/encrypted';
+import jwt from 'jsonwebtoken';
+import {JWT_SECRET}from '../index'
 
 
 // log in 
@@ -22,12 +24,10 @@ export  const login = async(req:Request, res:Response ): Promise<void>=>{
 
         if(!user){
             res.status(401).json({
-                sucess:false,
+                success:false,
                 message:'Invalid email or password'
             })
             return;
-        }else{
-            alert("email")
         }
 
         //Verify the password is correct
@@ -39,13 +39,14 @@ export  const login = async(req:Request, res:Response ): Promise<void>=>{
                 message: 'Invalid email or password'
             })
             return;
-        }else{
-            alert("contraseña")
         }
 
-
-
-
+        //Body
+        
+    const payload = {id: user.id, username: user.name};
+        
+    const token = jwt.sign(payload, JWT_SECRET, {expiresIn:"1h"});
+        res.status(200).json({message:"login exitoso", token})
 
 
 

@@ -1,10 +1,6 @@
 import express from 'express';
 const router = express.Router();
-import swaggerConfig from '../config/swagger';
-const {swaggerUi, swaggerSpec} = swaggerConfig;
 
-
-router.use("/api-docs", swaggerUi.setup(swaggerSpec));
-
+// Swagger is configured in index.ts, no need for additional setup here
 
 export default router;

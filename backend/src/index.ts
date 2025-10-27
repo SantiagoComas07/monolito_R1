@@ -6,11 +6,15 @@ import swaggerConfig from './config/swagger';
 const { swaggerUi, swaggerSpec } = swaggerConfig;
 
 dotenv.config();
-
 const app = express();
+
+// API_KEY -- JWT
+export const JWT_SECRET= process.env.API_KEY || 'superSecret';
+
 
 app.use(express.json());
 app.use('/api', barrel);
+
 // swagger route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const port = process.env.PORT;
@@ -28,3 +32,5 @@ app.listen(port, ()=>{
 }
 
 startServer();
+
+
