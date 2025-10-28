@@ -2,6 +2,7 @@ import  sequelize  from "../config/db";
 import {User, Product } from "../models";
 
 
+
 async function seed() {
   try {
     await sequelize.sync({ force: true });

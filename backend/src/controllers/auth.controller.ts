@@ -30,6 +30,8 @@ export  const login = async(req:Request, res:Response ): Promise<void>=>{
             return;
         }
 
+        console.log('User found:', user);
+        console.log('password', password);
         //Verify the password is correct
         const isPasswordValid = await passwordService.comparePassword(password,user.password);
 

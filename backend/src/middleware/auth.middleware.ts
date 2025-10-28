@@ -2,7 +2,7 @@ import {Request, Response, NextFunction} from 'express';
 import jwt, {JwtPayload,VerifyErrors}  from 'jsonwebtoken';
 import {JWT_SECRET} from '../index';
 
-export const validateLogin = (req:Request, res:Response, next:NextFunction) =>{
+export const validateInput = (req:Request, res:Response, next:NextFunction) =>{
     const {email,password}=req.body;
 
     if(!email || !password){
@@ -28,6 +28,20 @@ export const verifyToken= (req:Request, res:Response, next:NextFunction)=>{
         if(error){
             return res.status(403).json({message:"Invalid token"});
         }
+        
         next();
     })
+}
+
+
+export const verifyAdminRole = (req:Request, res:Response, next:NextFunction)=>{
+    const {role}= req.body;
+
+    if(!role){
+        return res.status(400).json({message:"There isn't role specified"})
+    }
+    if(role !== "analyst"){
+        return res.status(403).json({message: "Access denied"})
+    }
+    next();
 }
